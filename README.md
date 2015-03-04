@@ -12,10 +12,10 @@
 A wrapper for CUploadedFile class of PHP Yii framework.
 It adds following help methods to CUploadedFile class:
 
-- ```php isExtensionInList($extensions)```
-- ```php isMimeTypeInList($mimeTypes)```
-- ```php isImageTypeInList($imageTypes)```
-- ```php validateImageDimensions($maxWidth, $maxHeight, $minWidth, $minHeight)```
-- ```php validate($maxFileBytes, $allowedExtensions, $allowedMimeTypes)```
-- ```php validateImage($maxFileBytes, $allowedExtensions, $allowedImageTypes, $maxWidth = null, $maxHeight = null, $minWidth = null, $minHeight = null)```
-- ```php saveImage($saveAs, $pngToJpg = false)```
+- isExtensionInList($extensions)
+- isMimeTypeInList($mimeTypes)
+- isImageTypeInList($imageTypes)
+- validateImageDimensions($maxWidth, $maxHeight, $minWidth, $minHeight)
+- validate($maxFileBytes, $allowedExtensions, $allowedMimeTypes)
+- validateImage($maxFileBytes, $allowedExtensions, $allowedImageTypes, $maxWidth = null, $maxHeight = null, $minWidth = null, $minHeight = null)
+- saveImage($saveAs, $pngToJpg = false)
