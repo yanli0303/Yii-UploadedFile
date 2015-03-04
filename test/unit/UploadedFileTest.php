@@ -25,10 +25,29 @@ class UploadedFileTest extends CTestCase {
         return $file;
     }
 
+    public function setUp() {
+        parent::setUp();
+
+        uopz_backup('mkdir');
+        uopz_backup('CUploadedFile', 'saveAs');
+        uopz_backup('CUploadedFile', 'getType');
+        uopz_backup('CFileHelper', 'getMimeType');
+    }
+
+    public function tearDown() {
+        parent::tearDown();
+
+        uopz_restore('CFileHelper', 'getMimeType');
+        uopz_restore('CUploadedFile', 'getType');
+        uopz_restore('CUploadedFile', 'saveAs');
+        uopz_restore('mkdir');
+    }
+
     public function testIsExtensionInList() {
         $file = $this->getFileInstance('jpg');
 
         $this->assertTrue($file->isExtensionInList(array('jpg')));
+
         $this->assertTrue($file->isExtensionInList(array('test', '.jPG')));
 
         $this->assertFalse($file->isExtensionInList(array()));
@@ -45,6 +64,15 @@ class UploadedFileTest extends CTestCase {
         $this->assertFalse($file->isMimeTypeInList(array()));
         $this->assertFalse($file->isMimeTypeInList(array('')));
         $this->assertFalse($file->isMimeTypeInList(array('text/plain', 'image/png')));
+
+        // unable to determine the mime type
+        uopz_function('CFileHelper', 'getMimeType', function($file) {
+            return null;
+        });
+        uopz_function('CUploadedFile', 'getType', function() {
+            return null;
+        });
+        $this->assertFalse($file->isMimeTypeInList(array('image/jpeg')));
     }
 
     public function testIsImageTypeInList() {
