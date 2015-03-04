@@ -1,0 +1,19 @@
+{
+    "name": "yanli0303/yii-uploaded-file",
+    "description": "A wrapper for CUploadedFile class of PHP Yii framework.",
+    "require": {
+        "php": ">=5.3",
+        "yiisoft/yii": ">=1.1.13 | <2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yan Li",
+            "email": "peterleepersonal@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    }
+}
