@@ -61,8 +61,9 @@ class UploadedFile {
      */
     public function isImageTypeInList($imageTypes) {
         $fileName = $this->file->getTempName();
-        $imageType = @exif_imagetype($fileName);
-        if (false === $imageType) {
+        $imageInfo = @getimagesize($fileName);
+        $imageType = is_array($imageInfo) && isset($imageInfo[2]) ? $imageInfo[2] : null;
+        if (is_null($imageType)) {
             return false;
         }
 
