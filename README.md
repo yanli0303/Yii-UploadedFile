@@ -24,19 +24,18 @@ It adds following help methods to CUploadedFile class:
 ## Usage ##
 
 ```PHP
-$maxFileBytes = 4194304; //4 * 1024 * 1024 = 4MB
-$allowedImageFileExtensions = array('.png', '.jpg', '.jpeg');
-$allowedImageTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG);
+$maxBytes = 4194304; //4 * 1024 * 1024 = 4MB
+$allowedExtensions = array('.png', '.jpg', '.jpeg');
+$allowedTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG);
 
 $uploaded = new UploadedFile('file');
-$error = $uploaded->validateImage($maxFileBytes, 
-	$allowedImageFileExtensions, $allowedImageTypes);
+$error = $uploaded->validateImage($maxBytes, $allowedExtensions, $allowedTypes);
 if (is_string($error)) {
     throw new Exception($error);
 }
 
 $saveAs = '/webroot/uploads/images/'.basename($uploaded->file->getName());
-$saved = $uploaded->saveImage($saved, false);
+$saved = $uploaded->saveImage($saveAs, false);
 if (empty($saved)) {
     throw new Exception('Sorry, we couldn\'t upload the image.');
 }
