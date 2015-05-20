@@ -29,15 +29,17 @@ $allowedImageFileExtensions = array('.png', '.jpg', '.jpeg');
 $allowedImageTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG);
 
 $uploaded = new UploadedFile('file');
-$error = $uploaded->validateImage($maxFileBytes, $allowedImageFileExtensions, $allowedImageTypes);
+$error = $uploaded->validateImage($maxFileBytes, 
+	$allowedImageFileExtensions, $allowedImageTypes);
 if (is_string($error)) {
     throw new Exception($error);
 }
 
-$saveAs = $uploaded->saveImage('/webroot/uploads/images/'.basename($uploaded->file->getName()), false);
-if (empty($saveAs)) {
-    throw new Exception('An error has occurred and we couldn\'t upload the image. Please try again later.');
+$saveAs = '/webroot/uploads/images/'.basename($uploaded->file->getName());
+$saved = $uploaded->saveImage($saved, false);
+if (empty($saved)) {
+    throw new Exception('Sorry, we couldn\'t upload the image.');
 }
 
-// do sth with saved image: $saveAs
+// do sth with saved image: $saved
 ```
